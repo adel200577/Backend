@@ -58,17 +58,20 @@ emitter.emit("bell", { time: Date.now(), count: 10 });
 
 //Yeeeeaaaaaaaaahhhhhhhhhhh
 //HTTP Module:
-const http = require("http");
-const server = http.createServer((req, res) => {
-  console.log("NewConnection!");
-  console.log(req.url);
-  if (req.url === "/") {
-    res.write("HomePage");
-  } else if (req.url === "/URL") {
-    res.write("Response");
-  } else {
-    res.write(JSON.stringify({ products: ["product1,product2"] }));
-  }
-  res.end();
-});
-server.listen(3000);
+// const http = require("http");
+// const server = http.createServer((req, res) => {
+//   console.log("NewConnection!");
+//   console.log(req.url);
+//   if (req.url === "/") {
+//     res.write("HomePage");
+//   } else if (req.url === "/URL") {
+//     res.write("Response");
+//   } else {
+//     res.write(JSON.stringify({ products: ["product1,product2"] }));
+//   }
+//   res.end();
+// });
+// server.listen(3000);
+
+const moment = require("jalali-moment");
+console.log(moment(new Date()).locale("fa").format("YYYY/MM/DD"));
