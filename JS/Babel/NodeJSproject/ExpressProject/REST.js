@@ -34,7 +34,7 @@ app.post(
   [
     body("email", "VALID EMAIL").isEmail(),
     body("first_name", "VALID first_name").notEmpty(),
-    body("last_name", "VALID last_name").notEmpty()
+    body("last_name", "VALID last_name").notEmpty(),
   ],
   (req, res) => {
     const errors = validationResult(req);
@@ -55,6 +55,54 @@ app.post(
   },
 );
 
+//PUT API:
+app.put(
+  "/api/users/:id",
+  [
+    body("email", "VALID EMAIL").isEmail(),
+    body("first_name", "VALID first_name").notEmpty(),
+    body("last_name", "VALID last_name").notEmpty(),
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    const user = User.find((u) => u.id == req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        data: null,
+        message: "user not found",
+      });
+    }
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        data: null,
+        errors: errors.array(),
+        message: "validation error",
+      });
+    }
+    User = User.map((user) => {
+      if (user.id == req.params.id) {
+        return { ...user, ...req.body };
+      }
+      return user;
+    });
+    res.json({ data: User, message: "OK" });
+  },
+);
+
+//DELETE API:
+app.delete("/api/users/:id", (req, res) => {
+  const user = User.find((u) => u.id == req.params.id);
+  if (!user) {
+    return res.status(404).json({
+      data: null,
+      message: "user not found",
+    });
+  }
+  const index = User.indexOf(user);
+  User.splice(index,1);
+  res.json({ data: User, message: "OK" });
+});
+
 console.log(User);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
@@ -63,3 +111,5 @@ app.listen(port, () => {
 
 //Status Code : 200 (Everything was successful)
 //The infamous 404 is used for errors as in line 19
+
+//middleware:
