@@ -8,7 +8,7 @@ app.use((req, res, next) => {
   req.body = req.body || {};
   req.body.username = "Ezio";
   req.user = { id: 9, name: "Altair" };
-  res.send("A message from a fine middleware1 dear noble man ");
+  //res.send("A message from a fine middleware1 dear noble man ");
   console.log("midd1");
   next();
 });
@@ -24,6 +24,12 @@ app.get("/api/users", (req, res) => {
     data: User,
     message: "OK",
   });
+});
+
+app.use((req, res, next) => {
+  console.log("midd3");
+  next();
+  
 });
 
 //Getting one user:
