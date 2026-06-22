@@ -4,6 +4,20 @@ const { body, validationResult } = require("express-validator");
 let User = require("./UserFile");
 const app = express();
 app.use(express.json());
+app.use((req, res, next) => {
+  req.body = req.body || {};
+  req.body.username = "Ezio";
+  req.user = { id: 9, name: "Altair" };
+  res.send("A message from a fine middleware1 dear noble man ");
+  console.log("midd1");
+  next();
+});
+app.use((req, res, next) => {
+  console.log("midd2");
+  console.log(req.body);
+  console.log(req.user);
+  next();
+});
 //Getting all users
 app.get("/api/users", (req, res) => {
   res.json({
@@ -99,11 +113,11 @@ app.delete("/api/users/:id", (req, res) => {
     });
   }
   const index = User.indexOf(user);
-  User.splice(index,1);
+  User.splice(index, 1);
   res.json({ data: User, message: "OK" });
 });
 
-console.log(User);
+//console.log(User);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Servre is online / port ${port}`);
@@ -113,3 +127,20 @@ app.listen(port, () => {
 //The infamous 404 is used for errors as in line 19
 
 //middleware:
+//a middleware can modify the req res objects
+//it has read and write authority for req and can create the respond for res
+//a middleware can decide to stop the data flow when neccessary
+//middleware is sequential and thus the order you put them in is important
+//Every Route you define in express is considered a middleware
+
+//Custom Middlewares:
+//app.use(<middleware function>)
+//app.use((req,res,next)=>{})
+// app.use((req, res, next) => {
+//   req.body.username = "Ezio";
+//   req.user = { id: 9, name: "Altair" };
+//   res.send("A message from a fine middleware1 dear noble man ");
+//   console.log("midd1");
+//   next();
+// });
+//the next() function is what decides if we should pass the data to the next middleware or not
