@@ -11,7 +11,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "config": "^4.4.1",
+    "debug": "^4.4.3",
+    "ejs": "^6.0.1",
     "express": "^5.2.1",
-    "express-validator": "^7.3.2"
+    "express-validator": "^7.3.2",
+    "helmet": "^8.2.0",
+    "morgan": "^1.11.0"
   }
 }

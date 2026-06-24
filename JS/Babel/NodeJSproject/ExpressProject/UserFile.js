@@ -42,3 +42,4 @@ module.exports = [
     avatar: "https://reqres.in/img/faces/6-image.jpg",
   },
 ];
+
