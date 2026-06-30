@@ -7,7 +7,7 @@ const config = require("config");
 const debug = require("debug")("app:main");
 const userRouter = require("./routes/UserRoutes");
 app.use(express.json());
-
+const mongoose = require("mongoose");
 app.use((req, res, next) => {
   req.body = req.body || {};
   req.body.username = "Ezio";
@@ -28,6 +28,11 @@ app.use("/api/users", userRouter);
 
 //Getting all users
 //console.log(User);
+
+mongoose
+  .connect("mongodb://localhost:27017/Express")
+  .then(() => console.log("Connected to ExpressDB"))
+  .catch(() => console.log("Connection Failed!"));
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Servre is online / port ${port}`);

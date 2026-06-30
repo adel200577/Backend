@@ -1,13 +1,21 @@
 //Route Refactoring
-
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-let User = require("../UserFile");
+const mongoose = require("mongoose");
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/", (req, res) => {
+const userSchema = mongoose.Schema({
+  first_name: { type: String, required: true },
+  last_name: { type: String, required: true },
+  email: { type: String, required: true },
+});
+
+const User = mongoose.model("User", userSchema);
+
+router.get("/", async (req, res) => {
+  const users = await User.find();
   res.json({
     data: User,
     message: "OK",
@@ -15,8 +23,8 @@ router.get("/", (req, res) => {
 });
 
 //Getting one user:
-router.get("/:id", (req, res) => {
-  const user = User.find((u) => u.id === parseInt(req.params.id));
+router.get("/:id", async (req, res) => {
+  const user = await User.findById(req.paramsms.id);
   console.log(user);
   if (!user) {
     return res.status(404).json({
@@ -38,7 +46,7 @@ router.post(
     body("first_name", "VALID first_name").notEmpty(),
     body("last_name", "VALID last_name").notEmpty(),
   ],
-  (req, res) => {
+  async (req, res) => {
     ////urlencode middleware:
     //return console.log(req.body);
     const errors = validationResult(req);
@@ -51,7 +59,12 @@ router.post(
     }
     console.log(req.body);
     res.send("Developing");
-    User.push({ id: User.length + 1, ...req.body });
+    let newUser = new User({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email_name: req.body.email_name,
+    });
+    newUser = await newUser.save();
     res.json({
       data: User,
       message: "OK",
@@ -67,15 +80,8 @@ router.put(
     body("first_name", "VALID first_name").notEmpty(),
     body("last_name", "VALID last_name").notEmpty(),
   ],
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
-    const user = User.find((u) => u.id == req.params.id);
-    if (!user) {
-      return res.status(404).json({
-        data: null,
-        message: "user not found",
-      });
-    }
     if (!errors.isEmpty()) {
       return res.status(400).json({
         data: null,
@@ -83,28 +89,37 @@ router.put(
         message: "validation error",
       });
     }
-    User = User.map((user) => {
-      if (user.id == req.params.id) {
-        return { ...user, ...req.body };
-      }
-      return user;
-    });
-    res.json({ data: User, message: "OK" });
+
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        first_name: req.body.first_name,
+        last_name: req.bodylast_name,
+        email: req.body.email,
+      },
+      { new: true },
+    );
+    if (!user) {
+      return res.status(404).json({
+        data: null,
+        message: "user not found",
+      });
+    }
+
+    res.json({ data: user, message: "OK" });
   },
 );
 
 //DELETE API:
-router.delete("/:id", (req, res) => {
-  const user = User.find((u) => u.id == req.params.id);
+router.delete("/:id", async (req, res) => {
+  const user = await User.findByIdAndRemove(req.params.id);
   if (!user) {
     return res.status(404).json({
       data: null,
       message: "user not found",
     });
   }
-  const index = User.indexOf(user);
-  User.splice(index, 1);
-  res.json({ data: User, message: "OK" });
+  res.json({ data: user, message: "OK" });
 });
 
 module.exports = router;
