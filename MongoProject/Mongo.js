@@ -5,7 +5,7 @@ mongoose
   .then(() => {
     console.log("Connection Successful");
   })
-  .catch((err) => {
+  .catch(() => {
     console.error("Connection Failed");
   });
 

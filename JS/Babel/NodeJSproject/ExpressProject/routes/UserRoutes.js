@@ -2,29 +2,22 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const mongoose = require("mongoose");
+const User = require("../Models/Models");
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-const userSchema = mongoose.Schema({
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
-  email: { type: String, required: true },
-});
-
-const User = mongoose.model("User", userSchema);
 
 router.get("/", async (req, res) => {
   const users = await User.find();
   res.json({
-    data: User,
+    data: users,
     message: "OK",
   });
 });
 
 //Getting one user:
 router.get("/:id", async (req, res) => {
-  const user = await User.findById(req.paramsms.id);
+  const user = await User.findById(req.params.id);
   console.log(user);
   if (!user) {
     return res.status(404).json({
@@ -58,15 +51,15 @@ router.post(
       });
     }
     console.log(req.body);
-    res.send("Developing");
+    // res.send("Developing");
     let newUser = new User({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      email_name: req.body.email_name,
+      email: req.body.email,
     });
     newUser = await newUser.save();
     res.json({
-      data: User,
+      data: newUser,
       message: "OK",
     });
   },
@@ -94,7 +87,7 @@ router.put(
       req.params.id,
       {
         first_name: req.body.first_name,
-        last_name: req.bodylast_name,
+        last_name: req.body.last_name,
         email: req.body.email,
       },
       { new: true },
@@ -112,7 +105,7 @@ router.put(
 
 //DELETE API:
 router.delete("/:id", async (req, res) => {
-  const user = await User.findByIdAndRemove(req.params.id);
+  const user = await User.findByIdAndDelete(req.params.id);
   if (!user) {
     return res.status(404).json({
       data: null,
