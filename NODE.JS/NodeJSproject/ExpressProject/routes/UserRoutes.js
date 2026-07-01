@@ -1,5 +1,6 @@
 //Route Refactoring
 const express = require("express");
+const mongoose = require("mongoose")
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const User = require("../Models/Models");
@@ -17,6 +18,9 @@ router.get("/", async (req, res) => {
 
 //Getting one user:
 router.get("/:id", async (req, res) => {
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)){
+    return res.status(400).send("invalid id");
+  }
   const user = await User.findById(req.params.id);
   console.log(user);
   if (!user) {
