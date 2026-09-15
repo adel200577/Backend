@@ -9,8 +9,8 @@ mongoose
     console.error("Connection Failed");
   });
 
-//we use schimas in "mongoose" to determine how a collection's document must contain and what type of data it must have. It is like a blueprint of the document.
-//basicly we determine a field for our document and then we determine the type of data that field must have.
+//we use schema in "mongoose" to determine how a collection's document must contain and what type of data it must have. It is like a blueprint of the document.
+//basically we determine a field for our document and then we determine the type of data that field must have.
 //For example, if we want to create a document for a user, we can create a schema for it and then
 // we can determine the fields for the user document like name, age, email, etc. and then
 // we can determine the type of data that field must have like name must be a string, age must be a number, email must be a string, etc.
@@ -45,10 +45,10 @@ const userSchema = new mongoose.Schema({
 //most used field data types:
 //String, Number, Date, Buffer, Boolean, Mixed, ObjectId, Array
 
-//ModelClass:Compilimg a Schema to a ModelClass
+//ModelClass:Compiling a Schema to a ModelClass
 //A model is a class with which we construct documents. In this case, each document will be an instance of the User model.
 //Models are responsible for creating and reading documents from the underlying MongoDB database.
-//Inshort,with models we can create objects and wiht those objects we can perform CRUD operations on the database.
+//inshort,with models we can create objects and with those objects we can perform CRUD operations on the database.
 //and save them in our documents
 
 //We have to create a model for our schema to perform CRUD operations on the database.

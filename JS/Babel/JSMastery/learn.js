@@ -1,7 +1,7 @@
 //Node Check
 console.log("Hello, World!");
 
-//Variabale Log Test
+//Variable Log Test
 let name = "Heil!";
 console.log(name);
 
@@ -43,7 +43,7 @@ console.log(typeof adj);
 adj = 1.5;
 console.log(typeof adj);
 //Terminal output implies once the adj variable was assigned
-//to an ineger or a float,the JS reassigned the variable's type to Number
+//to an integer or a float,the JS reassigned the variable's type to Number
 //NOTE:in JavaScript we only have one type to identify integers, floats, and doubles
 //NOTE:JavaScript is dynamic
 
@@ -64,7 +64,7 @@ let Person = {
 
 //{} is an object literal
 
-//inside an object literal our datas should be in key(property) and value assignment
+//inside an object literal our data should be in key(property) and value assignment
 
 //NOTICE:Key is the object's property
 //In the example above, fname, agenum and LivingStatus considered
@@ -75,7 +75,7 @@ let Person = {
 //Printing all properties related to an object:
 console.log(Person);
 
-//Printing a specifis property's value:
+//Printing a specifies property's value:
 //1.DotNotation: console.log(Object.PropertyName); :
 console.log(Person.fname);
 //2.BracketNotation: console.log(Object["PropertyName"]); :
@@ -97,7 +97,7 @@ console.log(Users[1]);
 console.log(Users[25]);
 
 //As a dynamic language, in JS you and the language itself
-//can modify and chnage an array's length:
+//can modify and change an array's length:
 Users[2] = "Jack";
 console.log(Users);
 console.log(Users[2]);
@@ -133,7 +133,7 @@ function example(name, age) {
   console.log("Previats\t" + name + "\tyour age is\t" + age);
   console.log(result);
 }
-//To call a function and evenrually get a log out of it
+//To call a function and eventually get a log out of it
 //simply do : FunctionName(); :
 example("Adel", 21);
 //Let's create a function that returns sth:
@@ -141,9 +141,9 @@ function square(number) {
   let result = number * number;
   return result;
 }
-function square(number) {
-  return number * number;
-}
+// function square(number) {
+//   return number * number;
+// }
 let result = square(40);
 console.log(result);
 //FunFact: console.log is also a function
@@ -176,17 +176,17 @@ console.log(result);
 //Strict equality:
 //[=== , !===]:
 console.log("1" == 1);
-// == operator ignor's the type and seeks the value
+// == operator ignore's the type and seeks the value
 console.log("1" === 1);
 // === operator seeks type and value both
 
-//NOTE:Compsrison Operator's result is boolean
+//NOTE:Comparison Operator's result is boolean
 
 //Ternary Operator:
 let authenticated = true;
-//let BottonText = __ ? __ : __ ; (structure)
-let BottonText = authenticated === true ? " dashboard" : "Login";
-console.log(BottonText);
+//let ButtonText = __ ? __ : __ ; (structure)
+let ButtonText = authenticated === true ? " dashboard" : "Login";
+console.log(ButtonText);
 
 //Logical Operators:
 //Logical AND : &&:
@@ -221,7 +221,7 @@ console.log(1 | 2);
 // 1 = 001
 // 2 = 010
 // 1 | 2 = 0|0 0|1  1|0 = 011 = 3
-//Ou0tput = 3
+//Output = 3
 console.log(1 & 2);
 // 1 & 2 = 0&0 0&1 1&0 = 000 = 0
 //Output = 0
@@ -284,7 +284,7 @@ circle3.color = "red";
 circle3.draw = function () {};
 
 delete circle3.radius;
-delete circle3.draw;
+delete circle3.draw; 
 
 console.log(circle3);
 
@@ -295,7 +295,7 @@ console.log(circle3);
 //ConstructorProperty:
 
 console.log(circle.constructor);
-//CustomCunstructor
+//CustomConstructor
 console.log(circle2.constructor);
 console.log(circle3.constructor);
 //Pre-Build Constructor
@@ -304,7 +304,7 @@ console.log(circle3.constructor);
 //the constructor itself while in FactoryFunction and ObjectLiteral
 //methods, the JS engine will construct the related object's constructor by itself
 
-//Diffirent types of JS engine constructors:
+//Different types of JS engine constructors:
 
 //For Strings:
 let name3 = "Adel";
@@ -332,10 +332,10 @@ const circle4 = new Function(
 );
 
 //some methods for a function object:
-Circle.call({}, 9);
+Circle.call({}, 9);  
 Circle.apply({}, [12]);
 
-//What's the differnce between primitive and reference types:
+//What's the difference between primitive and reference types:
 //primitive types:
 //Number
 //Boolean
@@ -370,14 +370,14 @@ function increase(number) {
 increase(number);
 console.log(number);
 
-let obj = { value: 10 };
-function increase(obj) {
-  obj.value++;
-}
-increase(obj);
-console.log(obj);
+// let obj = { value: 10 };
+// function increase(obj) {
+//   obj.value++;
+// }
+// increase(obj);
+// console.log(obj);
 
-//objec iteration:
+//object iteration:
 const obj1 = {
   radius: 1,
   draw() {
@@ -425,7 +425,7 @@ console.log(Object.entries(obj1));
 
 for (let key in Object.entries(obj1)) {
   console.log(key);
-  console.log(Object.entries(obj)[key]);
+  console.log(Object.entries(obj1)[key]);
 }
 
 //but the above code is not the best way to do it because it will print the index of the entries array instead of the key and value of the object
@@ -474,7 +474,7 @@ const obj2 = Object.assign({}, obj1);
 console.log(obj2);
 //Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.
 
-//you can assign a property to the objec you're assigning to independently from the fomer object:
+//you can assign a property to the object you're assigning to independently from the former object:
 const obj3 = Object.assign({ location: 1 }, obj1);
 console.log(obj3);
 
@@ -482,12 +482,12 @@ console.log(obj3);
 const obj4 = { ...obj1 };
 console.log(obj4);
 
-//like the previous example,you can assign an independent property from the former object to the target objec by this method as well:
+//like the previous example,you can assign an independent property from the former object to the target object by this method as well:
 const obj5 = { color: "red", ...obj1 };
 console.log("\t", obj5);
 
 //Garbage collection:
-//Unlike c family languaged and more,the JS engine
+//Unlike c family languages and more,the JS engine
 //automatically allocates and destructs objects
 //and the garbage data
 
@@ -503,10 +503,10 @@ function getRandom(min, max) {
 console.log(getRandom(2.12, 25));
 
 //if you want to desclude the floating part:
-function getRandom(min, max) {
-  return Math.floor(Math.random()) * (max - min) + min;
-}
-console.log(getRandom(2.12, 25));
+// function getRandom(min, max) {
+//   return Math.floor(Math.random()) * (max - min) + min;
+// }
+// console.log(getRandom(2.12, 25));
 
 //to round a number :
 console.log(Math.round(1.365));
@@ -554,7 +554,7 @@ console.log(message.split(" "));
 const output = "Viva . \n" + "Romanum Imperum";
 console.log(output);
 //still look like shit!
-//alright,literal revirew:
+//alright,literal review:
 //{}:Object
 //true , false:Boolean
 // ' "" :String
@@ -638,12 +638,12 @@ console.log(num.indexOf(1));
 //and wanna locate the related index to the latter element:
 console.log(num.lastIndexOf(2));
 
-//How to check element existene in an array:
+//How to check element existence in an array:
 if (num.includes(1)) {
   console.log("JA");
 }
 
-//the index method related arguments have seconday argument
+//the index method related arguments have secondary argument
 //Declaring from the start of which exact index should js looks for:
 console.log(num.indexOf(2, 2));
 
@@ -694,10 +694,10 @@ console.log(thing);
 sth.length = 0;
 console.log(sth);
 
-//now let's delete them all from wherver we like:
-num.splice(0, num.lenghth);
+//now let's delete them all from wherever we like:
+num.splice(0, num.length);
 
-//slicing and combinig arrays to eachother:
+//slicing and combining arrays to each other:
 const former = [1, 2, 3];
 const latter = [4, 5, 6];
 const combined = former.concat(latter);
@@ -731,7 +731,7 @@ arr.forEach((number, i) => console.log(i, number));
 const joined = arr.join(" ");
 console.log(joined);
 console.log(typeof joined);
-//Spliting a string:
+//Splitting a string:
 //it'll convert a string to an array
 const str = "I am death";
 console.log(str.split(" "));
@@ -754,7 +754,7 @@ const OBJECT = [
 OBJECT.sort(function (a, b) {
   let nameA = a.name.toLowerCase();
   let nameB = b.name.toLowerCase();
-  //Because the comparrison is using ASCII code
+  //Because the comparison is using ASCII code
   //we lowercase all elements of a string
   if (nameA < nameB) {
     return -1;
@@ -767,7 +767,7 @@ OBJECT.sort(function (a, b) {
 OBJECT.sort((a, b) => {
   let nameA = a.name.toLowerCase();
   let nameB = b.name.toLowerCase();
-  //Because the comparrison is using ASCII code
+  //Because the comparison is using ASCII code
   //we lowercase all elements of a string
   if (nameA < nameB) {
     return -1;
@@ -817,7 +817,7 @@ const agenum = users.filter((user) => user.age > 20);
 console.log(agenum);
 
 //mapping an array:
-//it'll applu an effect on all elements of an array:
+//it'll apply an effect on all elements of an array:
 const map = arr.map((value) => value * 2);
 console.log(map);
 
@@ -844,7 +844,7 @@ console.log(chain);
 //function -> global(window,global)
 //BUT
 //if the function is not considered as a method (just a regular function)
-//than "this" points to the JS engine gloal object
+//than "this" points to the JS engine global object
 //if the code is running in a browser, the global object is "WINDOW"
 //if the code is running in a node, the global object is "GLOBAL"
 
@@ -919,7 +919,7 @@ function sum(a, b) {
   return total;
 }
 console.log(sum(1, 2, 3, 5, 6));
-//a function is an object and we said that we can't itterate
+//a function is an object and we said that we can't iterate
 //an object with for-of loop
 //BUT
 //it's more precise to say that we can iterate an object
@@ -929,7 +929,7 @@ console.log(sum(1, 2, 3, 5, 6));
 //Reduce method in arrays:
 const reduce = [1, 2, 3, 4, -1];
 let sum1 = reduce.reduce(
-  (accumlator, currentValue) => accumlator + currentValue,
+  (accumulator, currentValue) => accumulator + currentValue,
   0,
 );
 console.log(sum1);
@@ -962,7 +962,7 @@ const person4 = {
 };
 console.log(person4.fullName);
 
-//Rest Opeeator:
+//Rest Operator:
 function sum6(discount, ...arg) {
   console.log(arg);
   const price6 = arg.reduce((a, b) => a + b);
@@ -977,7 +977,7 @@ const letter = "Adel";
 
 console.log(letter);
 
-//Var variabale declaration:
+//Var variable declaration:
 var x10 = 6;
 //var => function scoped
 //let const => block scoped
@@ -1027,7 +1027,7 @@ console.log(person9.fullName);
 
 //for-in loop returns all instance and prototype properties
 //Class is a constructor function
-//settimeout();
+//setTimeout();
 //Promise:
 function ball1() {
   return new Promise((resolve, reject) => {
@@ -1079,7 +1079,7 @@ ball1()
 
 //async and await:The Best
 
-async function ball1() {
+async function ball_1() {
   if (true) {
     return "reach";
   } else {
@@ -1087,7 +1087,7 @@ async function ball1() {
   }
 }
 
-async function ball2() {
+async function ball_2() {
   if (false) {
     return "reach2";
   } else {
@@ -1095,7 +1095,7 @@ async function ball2() {
   }
 }
 
-async function ball3() {
+async function ball_3() {
   if (true) {
     return "reach3";
   } else {
